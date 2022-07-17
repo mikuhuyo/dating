@@ -1,0 +1,48 @@
+server:
+  port: 18081
+
+nacos:
+  server:
+    ip: 192.168.158.160
+    port: 8848
+    namespace: 40c09465-566e-4924-aa64-96f54eb20742
+
+spring:
+  application:
+    name: dating-db
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.server.ip}:${nacos.server.port}
+        namespace: ${nacos.server.namespace}
+        file-extension: yml
+        refresh-enabled: true
+        shared-configs: spring-boot-http.yml,spring-boot-starter-druid.yml,spring-boot-starter-mybatis-plus.yml
+      discovery:
+        server-addr: ${nacos.server.ip}:${nacos.server.port}
+        namespace: ${nacos.server.namespace}
+        cluster-name: DEFAULT
+        # 元数据, 用于权限服务实时获取各个服务的所有接口
+        metadata:
+          management.context-path: ${server.servlet.context-path:}${spring.mvc.servlet.path:}${management.endpoints.web.base-path:}
+
+dubbo:
+  scan:
+    # 扫描包
+    base-packages: com.dating.db.api
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://192.168.158.160:8848
+  application:
+    qos-port: -1
+  consumer:
+    check: false
+    timeout: 9000
+    retries: -1
