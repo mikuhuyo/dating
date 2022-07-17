@@ -1,0 +1,4 @@
+sms:
+  name: "sms"
+  url: "http://127.0.0.1:56085/tencent"
+  effectiveTime: "300"
