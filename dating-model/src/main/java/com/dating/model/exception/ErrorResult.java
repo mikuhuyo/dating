@@ -35,7 +35,7 @@ public class ErrorResult implements Serializable {
     }
 
     public static ErrorResult faceError() {
-        return ErrorResult.builder().errCode("000003").errMessage("图片非人像，请重新上传!").build();
+        return ErrorResult.builder().errCode("000003").errMessage("图片非人像, 请重新上传!").build();
     }
 
     public static ErrorResult mobileError() {
@@ -60,6 +60,11 @@ public class ErrorResult implements Serializable {
 
     public static ErrorResult notLikeError() {
         return ErrorResult.builder().errCode("000009").errMessage("用户未喜欢").build();
+    }
+
+    public static ErrorResult ossServiceOffline() {
+        return ErrorResult.builder().errCode("000010").errMessage("文件服务下线").build();
+
     }
 
 }
