@@ -3,6 +3,8 @@ package com.dating.app.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.dating.app.service.ISmsService;
+import com.dating.model.exception.BusinessException;
+import com.dating.model.exception.ErrorResult;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -61,8 +63,8 @@ public class ISmsServiceImpl implements ISmsService {
         });
 
         if (!(Boolean) map.get("result")) {
-            log.error("com.dating.app.service.impl.ISmsServiceImpl#verificationKey(String mobile, String smsCode) -> 验证码输入有误, 请重试");
-            return false;
+            log.error("com.dating.app.service.impl.ISmsServiceImpl#verificationKey(String mobile, String smsCode) -> {}", ErrorResult.loginError().getErrMessage());
+            throw new BusinessException(ErrorResult.loginError());
         }
 
         // 删除缓存
@@ -92,8 +94,8 @@ public class ISmsServiceImpl implements ISmsService {
         });
 
         if (map.get("result") == null) {
-            log.error("com.dating.app.service.impl.ISmsServiceImpl#getSmsCode(String mobile) -> 验证码获取失败, 请重新获取.");
-            return;
+            log.error("com.dating.app.service.impl.ISmsServiceImpl#getSmsCode(String mobile) -> {}", ErrorResult.fail().getErrMessage());
+            throw new BusinessException(ErrorResult.fail());
         }
 
         Map<String, Object> result = JSONObject.parseObject(JSONObject.toJSONString(map.get("result")), new TypeReference<Map<String, Object>>() {
