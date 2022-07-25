@@ -10,6 +10,13 @@ import com.dating.model.domain.UserInfo;
  */
 public interface IUserService {
     /**
+     * 根据ID更新用户信息
+     *
+     * @param userInfo
+     */
+    void updateUserById(UserInfo userInfo);
+
+    /**
      * 添加用户信息
      *
      * @param userInfo 用户信息实体

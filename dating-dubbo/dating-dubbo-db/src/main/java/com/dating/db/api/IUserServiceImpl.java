@@ -22,6 +22,11 @@ public class IUserServiceImpl implements IUserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
+    public void updateUserById(UserInfo userInfo) {
+        userInfoMapper.updateById(userInfo);
+    }
+
+    @Override
     public void createUserInfo(UserInfo userInfo) {
         userInfoMapper.insert(userInfo);
     }

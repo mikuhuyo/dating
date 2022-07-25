@@ -5,14 +5,12 @@ import com.dating.app.service.IFileService;
 import com.dating.app.service.ISmsService;
 import com.dating.app.service.IUserLoginService;
 import com.dating.app.utils.ThreadLocalUserUtil;
-import com.dating.commons.utils.JwtUtils;
 import com.dating.interfaces.api.IUserService;
 import com.dating.interfaces.dto.UserLoginDTO;
 import com.dating.interfaces.vo.UserLoginVO;
 import com.dating.model.domain.UserInfo;
 import com.dating.model.exception.BusinessException;
 import com.dating.model.exception.ErrorResult;
-import io.jsonwebtoken.Claims;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +39,14 @@ public class UserController {
 
     @Reference
     private IUserService userService;
+
+    @PutMapping
+    public ResponseEntity updateUserInfo(@RequestBody UserInfo userInfo) {
+        userInfo.setId(ThreadLocalUserUtil.getUserId());
+
+        userService.updateUserById(userInfo);
+        return ResponseEntity.status(200).body(null);
+    }
 
     @PostMapping("/loginReginfo/head")
     public ResponseEntity uploadUserAvatar(@RequestParam("headPhoto") MultipartFile file) throws Exception {
