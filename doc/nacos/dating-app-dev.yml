@@ -2,3 +2,19 @@ sms:
   name: "sms"
   url: "http://127.0.0.1:56085/tencent"
   effectiveTime: "300"
+
+minio:
+  endpoint: http://192.168.158.160:9000
+  accessKey: mikuhuyo
+  secretKey: yueliminvc@outlook.com
+  bucketImageName: dating
+  serviceName: oss
+
+baidu:
+  face:
+    appId: 26794834
+    apiKey: 0vxEdDB3F55vTUVen8XPqI4P
+    secretKey: dnl3rQlfVxiCad7BhANHZUxruExOz2ww
+    imageType: "URL"
+    authUrl: "https://aip.baidubce.com/oauth/2.0/token?"
+    faceUrl: "https://aip.baidubce.com/rest/2.0/face/v3/detect"
