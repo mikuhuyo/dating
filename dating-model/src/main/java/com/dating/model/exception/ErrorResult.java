@@ -67,4 +67,8 @@ public class ErrorResult implements Serializable {
 
     }
 
+    public static ErrorResult NoFaceIncluded() {
+        return ErrorResult.builder().errCode("000011").errMessage("上传图片未包含人脸").build();
+    }
+
 }
