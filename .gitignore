@@ -7,6 +7,7 @@ log.path_IS_UNDEFINED
 .DS_Store
 offline_user.md
 *.log
+test/
 
 ### STS ###
 .apt_generated
