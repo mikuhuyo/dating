@@ -4,6 +4,7 @@ import com.dating.app.service.IBaiduService;
 import com.dating.app.service.IFileService;
 import com.dating.app.service.ISmsService;
 import com.dating.app.service.IUserLoginService;
+import com.dating.app.utils.ThreadLocalUserUtil;
 import com.dating.commons.utils.JwtUtils;
 import com.dating.interfaces.api.IUserService;
 import com.dating.interfaces.dto.UserLoginDTO;
@@ -42,7 +43,7 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping("/loginReginfo/head")
-    public ResponseEntity uploadUserAvatar(@RequestParam("headPhoto") MultipartFile file, @RequestHeader("Authorization") String token) throws Exception {
+    public ResponseEntity uploadUserAvatar(@RequestParam("headPhoto") MultipartFile file) throws Exception {
         // 上传图片至minio
         String ossUrl = fileService.uploadImage(file.getOriginalFilename(), file.getContentType(), file.getInputStream());
         // 校验图片是否包含人脸
@@ -56,10 +57,9 @@ public class UserController {
     }
 
     @PostMapping("/loginReginfo")
-    public ResponseEntity loginReginfo(@RequestBody UserInfo userInfo, @RequestHeader("Authorization") String token) {
-        Claims claims = JwtUtils.getClaims(token);
-        Long id = (Long) claims.get("id");
-        userInfo.setId(id);
+    public ResponseEntity loginReginfo(@RequestBody UserInfo userInfo) {
+
+        userInfo.setId(ThreadLocalUserUtil.getUserId());
 
         userService.createUserInfo(userInfo);
         return ResponseEntity.status(200).body(null);
