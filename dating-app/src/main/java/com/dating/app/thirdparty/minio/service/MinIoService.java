@@ -1,4 +1,4 @@
-package com.dating.app.minio;
+package com.dating.app.thirdparty.minio.service;
 
 import io.minio.*;
 import io.minio.errors.*;
@@ -25,7 +25,7 @@ import java.util.Map;
  * @since 11
  */
 @Component
-public class MinIoComponent {
+public class MinIoService {
     private static final int DEFAULT_EXPIRY_TIME = 7 * 24 * 3600;
 
     @Autowired

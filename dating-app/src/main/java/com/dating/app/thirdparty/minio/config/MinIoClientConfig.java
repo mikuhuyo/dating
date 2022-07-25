@@ -1,4 +1,4 @@
-package com.dating.app.minio;
+package com.dating.app.thirdparty.minio.config;
 
 import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Value;

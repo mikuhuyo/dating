@@ -1,8 +1,8 @@
 package com.dating.app.service.impl;
 
 import com.baidu.aip.face.AipFace;
-import com.dating.app.baidu.utils.GsonUtils;
-import com.dating.app.baidu.utils.HttpUtil;
+import com.dating.app.thirdparty.baidu.utils.GsonUtils;
+import com.dating.app.thirdparty.baidu.utils.HttpUtil;
 import com.dating.app.service.IBaiduService;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;

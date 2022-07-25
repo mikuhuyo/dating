@@ -1,4 +1,4 @@
-package com.dating.app.baidu.utils;
+package com.dating.app.thirdparty.baidu.utils;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

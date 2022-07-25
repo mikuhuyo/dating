@@ -1,6 +1,6 @@
 package com.dating.app.service.impl;
 
-import com.dating.app.minio.MinIoComponent;
+import com.dating.app.thirdparty.minio.service.MinIoService;
 import com.dating.app.service.IFileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class IFileServiceImpl implements IFileService {
     private String serviceName;
 
     @Autowired
-    private MinIoComponent minIoComponent;
+    private MinIoService minIoComponent;
 
     @Override
     public String uploadImage(String fileName, String fileType, InputStream inputStream) throws Exception {

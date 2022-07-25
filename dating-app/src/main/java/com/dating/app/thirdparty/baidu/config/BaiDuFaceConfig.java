@@ -1,4 +1,4 @@
-package com.dating.app.baidu.config;
+package com.dating.app.thirdparty.baidu.config;
 
 import com.baidu.aip.face.AipFace;
 import org.springframework.beans.factory.annotation.Value;
