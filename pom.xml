@@ -36,6 +36,7 @@
         <mybatis.plus.version>3.1.2</mybatis.plus.version>
         <druid.version>1.1.22</druid.version>
         <minio.version>7.1.0</minio.version>
+        <baidu-sdk.version>4.16.10</baidu-sdk.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +73,18 @@
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baidu.aip</groupId>
+                <artifactId>java-sdk</artifactId>
+                <version>${baidu-sdk.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
