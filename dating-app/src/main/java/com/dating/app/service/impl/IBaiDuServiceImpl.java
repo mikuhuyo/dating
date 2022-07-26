@@ -103,7 +103,7 @@ public class IBaiDuServiceImpl implements IBaiduService {
 
     @Override
     public boolean verifyThatTheImageContainsFaceFromSDK(String imageUrl) throws JSONException {
-        HashMap<String, String> options = new HashMap<>();
+        HashMap<String, Object> options = new HashMap<>();
         options.put("face_field", "age");
         options.put("max_face_num", "2");
         options.put("face_type", "LIVE");
