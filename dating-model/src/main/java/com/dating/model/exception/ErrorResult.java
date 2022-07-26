@@ -71,4 +71,7 @@ public class ErrorResult implements Serializable {
         return ErrorResult.builder().errCode("000011").errMessage("上传图片未包含人脸").build();
     }
 
+    public static ErrorResult unauthorized() {
+        return ErrorResult.builder().errCode("000012").errMessage("用户未认证, 无权访问接口").build();
+    }
 }
