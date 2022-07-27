@@ -40,14 +40,6 @@ public class UserController {
     @Reference
     private IUserService userService;
 
-    @PutMapping
-    public ResponseEntity updateUserInfo(@RequestBody UserInfo userInfo) {
-        userInfo.setId(ThreadLocalUserUtil.getUserId());
-
-        userService.updateUserById(userInfo);
-        return ResponseEntity.status(200).body(null);
-    }
-
     @PostMapping("/loginReginfo/head")
     public ResponseEntity uploadUserAvatar(@RequestParam("headPhoto") MultipartFile file) throws Exception {
         // 上传图片至minio
@@ -59,7 +51,7 @@ public class UserController {
             return ResponseEntity.status(200).body(null);
         }
 
-        throw new BusinessException(ErrorResult.NoFaceIncluded());
+        throw new BusinessException(ErrorResult.noFaceIncluded());
     }
 
     @PostMapping("/loginReginfo")
@@ -80,21 +72,11 @@ public class UserController {
 
         UserLoginDTO userLoginDTO = userLoginService.userLogin(mobile);
         return ResponseEntity.status(HttpStatus.OK.value()).body(userLoginDTO);
-
-        // boolean isSend = smsService.verificationKey(mobile, code);
-        // if (isSend) {
-        //     UserLoginDTO userLoginDTO = userLoginService.userLogin(mobile);
-        //     return ResponseEntity.status(200).body(userLoginDTO);
-        // }
-        //
-        // return ResponseEntity.status(200).body("发生肾摸湿了?");
     }
 
     @PostMapping("/login")
     public ResponseEntity userLogin(@RequestBody UserLoginVO userLoginVO) throws IOException {
         smsService.getSmsCode(userLoginVO.getPhone());
         return ResponseEntity.status(HttpStatus.OK.value()).body(null);
-
-        // return ResponseEntity.status(200).body("success");
     }
 }
